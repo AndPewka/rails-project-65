@@ -17,6 +17,7 @@ module Web
 
     def create
       @bulletin = current_user.bulletins.build(bulletin_params)
+      authorize @bulletin
       if @bulletin.save
         redirect_to root_path, notice: 'Bulletin created successfully'
       else
@@ -24,9 +25,12 @@ module Web
       end
     end
 
-    def edit; end
+    def edit
+      authorize @bulletin
+    end
 
     def update
+      authorize @bulletin
       if @bulletin.update(bulletin_params)
         redirect_to @bulletin, notice: 'Bulletin updated successfully'
       else

@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   helper_method :current_user
 
+  include Pundit::Authorization
+
+  rescue_from Pundit::NotAuthorizedError do
+    redirect_to root_path, alert: 'You are not authorized to perform this action.'
+  end
+
   private
 
   def current_user

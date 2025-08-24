@@ -21,6 +21,13 @@ Rails.application.routes.draw do
 
     resources :bulletins, only: %i[index show new create edit update]
     root 'bulletins#index'
+
+    namespace :admin do
+      root 'dashboard#index'
+      resources :categories
+      resources :bulletins
+      resources :users
+    end
   end
 
   # Defines the root path route ("/")

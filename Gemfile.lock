@@ -208,6 +208,8 @@ GEM
     public_suffix (6.0.2)
     puma (6.6.1)
       nio4r (~> 2.0)
+    pundit (2.5.0)
+      activesupport (>= 3.0.0)
     racc (1.8.1)
     rack (3.1.16)
     rack-protection (4.1.1)
@@ -368,6 +370,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-rails_csrf_protection
   puma (>= 5.0)
+  pundit
   rails (~> 7.2.0)
   rubocop-rails-omakase
   selenium-webdriver

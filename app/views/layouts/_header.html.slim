@@ -7,12 +7,22 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4
 
     #navbarNav.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
-      ul.navbar-nav.ms-auto
         - if current_user
           li.nav-item
             = link_to 'New Bulletin', new_bulletin_path, class: 'nav-link'
+
+      ul.navbar-nav.ms-auto
+        - if current_user
+          - if current_user.admin?
+            li.nav-item
+              = link_to 'Admin Panel', admin_root_path, class: 'nav-link text-danger fw-bold'
           li.nav-item
-            = button_to 'Log out', logout_path, method: :delete, class: 'btn btn-link nav-link', form: { data: { turbo: false } }
+            = button_to 'Log out', logout_path, method: :delete,
+                        class: 'btn btn-link nav-link',
+                        form: { data: { turbo: false } }
         - else
           li.nav-item
-            = button_to 'Sign in', auth_request_path(:github), method: :post, class: 'btn btn-primary', data: { turbo: false }
+            = button_to 'Sign in', auth_request_path(:github),
+                        method: :post,
+                        class: 'btn btn-primary',
+                        data: { turbo: false }
