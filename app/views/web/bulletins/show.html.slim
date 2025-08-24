@@ -1,0 +1,31 @@
+.container
+  .card.shadow-sm.rounded-3.p-4
+    h2.mb-3 = @bulletin.title
+
+    .row
+      .col-md-6
+        - if @bulletin.image.attached?
+          = image_tag @bulletin.image.variant(resize_to_limit: [600, 400]), class: "img-fluid rounded mb-3", alt: @bulletin.title
+
+      .col-md-6
+        p
+          strong Description:
+        p.mb-3 = @bulletin.description
+
+        p
+          strong Category:
+        p.mb-3 = @bulletin.category.name
+
+        p
+          strong Author:
+        p.mb-3 = @bulletin.user.name
+
+        p.text-muted
+          | Posted
+          = time_ago_in_words(@bulletin.created_at)
+          |  ago
+
+    .d-flex.justify-content-between.mt-4
+      = link_to "Back", root_path, class: "btn btn-outline-secondary"
+      - if current_user == @bulletin.user
+        = link_to "Edit", edit_bulletin_path(@bulletin), class: "btn btn-primary"

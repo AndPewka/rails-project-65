@@ -1,0 +1,25 @@
+.container
+  .card.shadow-sm.rounded-3.p-4
+    h2.mb-4 Объявления
+
+    = form_with url: bulletins_path, method: :get, local: true, class: "row g-2 mb-4" do |f|
+      .col-md-6
+        = f.text_field :title, class: "form-control", placeholder: "Search by post title"
+      .col-md-4
+        = f.select :category_id, Category.all.collect { |c| [c.name, c.id] },
+                   { include_blank: "Choose category" },
+                   class: "form-select"
+      .col-md-2.d-flex.gap-2
+        = f.submit "Search", class: "btn btn-primary w-50"
+        = link_to "reset", bulletins_path, class: "btn btn-outline-secondary w-50"
+
+    / Сетка объявлений
+    .row.row-cols-1.row-cols-md-3.g-4
+      - @bulletins.each do |bulletin|
+        .col
+          .card.h-100.shadow-sm
+            - if bulletin.image.attached?
+              = image_tag bulletin.image.variant(resize_to_fill: [400, 250]), class: "card-img-top", alt: bulletin.title
+            .card-body
+              h5.card-title = link_to bulletin.title, bulletin_path(bulletin), class: "text-decoration-none"
+              p.text-muted.mb-0 = time_ago_in_words(bulletin.created_at) + " ago"

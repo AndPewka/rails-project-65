@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first_bulletin:
+  title: "iPhone 14 Pro"
+  description: "Selling iPhone 14 Pro in great condition"
+  user: one
+  category: electronics
+
+second_bulletin:
+  title: "Toyota Corolla"
+  description: "Reliable car, low mileage"
+  user: two
+  category: cars
