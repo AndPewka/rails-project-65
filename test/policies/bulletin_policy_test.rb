@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'test_helper'
 
 class BulletinPolicyTest < ActiveSupport::TestCase
@@ -11,7 +12,7 @@ class BulletinPolicyTest < ActiveSupport::TestCase
 
   test 'scope returns only published for guest' do
     records = Pundit.policy_scope!(nil, Bulletin)
-    assert records.all? { |b| b.state == 'published' }
+    assert(records.all? { |b| b.state == 'published' })
   end
 
   test 'show allowed for published for guest' do

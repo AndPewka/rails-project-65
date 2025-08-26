@@ -7,7 +7,7 @@ module Web
     class BulletinsControllerTest < ActionDispatch::IntegrationTest
       setup do
         @admin = users(:admin)
-        @mod   = bulletins(:moderation_other)
+        @mod = bulletins(:moderation_other)
       end
 
       test 'requires admin' do
@@ -30,7 +30,6 @@ module Web
         assert_redirected_to admin_bulletins_url
         assert_equal 'published', @mod.reload.state
       end
-
 
       test 'reject' do
         sign_in(@admin)

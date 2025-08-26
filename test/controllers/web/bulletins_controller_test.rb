@@ -8,7 +8,7 @@ module Web
       @user      = users(:user)
       @published = bulletins(:published_other)
       @own_draft = bulletins(:draft_user_own)
-      attach_test_image!(@own_draft)    # ← чтобы to_moderate!/archive! прошли
+      attach_test_image!(@own_draft)
     end
 
     test 'GET / shows only published' do

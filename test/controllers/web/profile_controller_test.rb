@@ -17,7 +17,6 @@ module Web
       assert_response :success
       assert_match 'Мои объявления', response.body
 
-      # ransack поиск по заголовку
       get profile_url, params: { q: { title_cont: 'My' } }
       assert_response :success
     end
