@@ -1,13 +1,39 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+draft_user_own:
+  title: "My Draft"
+  description: "Draft text"
+  state: draft
+  user: user
+  category: one
+  created_at: <%= 3.days.ago %>
 
-first_bulletin:
-  title: "iPhone 14 Pro"
-  description: "Selling iPhone 14 Pro in great condition"
-  user: one
-  category: electronics
+moderation_other:
+  title: "Needs review"
+  description: "Waiting for moderator"
+  state: under_moderation
+  user: other
+  category: one
+  created_at: <%= 2.days.ago %>
 
-second_bulletin:
-  title: "Toyota Corolla"
-  description: "Reliable car, low mileage"
-  user: two
-  category: cars
+published_other:
+  title: "Public post"
+  description: "Visible for everyone"
+  state: published
+  user: other
+  category: two
+  created_at: <%= 1.day.ago %>
+
+rejected_other:
+  title: "Rejected"
+  description: "Rejected by moderator"
+  state: rejected
+  user: other
+  category: one
+  created_at: <%= 4.days.ago %>
+
+archived_other:
+  title: "Old archived"
+  description: "Archived post"
+  state: archived
+  user: other
+  category: two
+  created_at: <%= 5.days.ago %>

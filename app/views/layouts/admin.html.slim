@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title Bulletin Board
+    title Admin Panel
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag "application", "data-turbo-track": "reload"
@@ -15,4 +15,8 @@ html
         .alert class="alert-#{bs}" role="alert" = message
 
     .container
-      = yield
+      .row
+        .col-3
+          = render "web/admin/shared/nav"
+        .col
+          = yield

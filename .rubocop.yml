@@ -30,3 +30,6 @@ Style/EmptyMethod:
 
 Layout/EmptyLinesAroundMethodBody:
   Enabled: true
+
+Metrics/AbcSize:
+  Enabled: false

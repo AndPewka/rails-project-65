@@ -1,0 +1,24 @@
+h1 = @bulletin.title
+p.text-muted = "Состояние: #{@bulletin.state}"
+- if @bulletin.image.attached?
+  = image_tag @bulletin.image.variant(resize_to_limit: [600, 400]), class: 'img-fluid rounded mb-3'
+p = simple_format(@bulletin.description)
+
+.mt-3
+  - if @bulletin.may_to_moderate?
+    = button_to 'Взять на модерацию', to_moderate_admin_bulletin_path(@bulletin),
+                method: :patch, class: 'btn btn-secondary me-2',
+                form: { data: { turbo: false } }
+  - if @bulletin.may_publish?
+    = button_to 'Опубликовать', publish_admin_bulletin_path(@bulletin),
+                method: :patch, class: 'btn btn-success me-2',
+                form: { data: { turbo: false } }
+  - if @bulletin.may_reject?
+    = button_to 'Отклонить', reject_admin_bulletin_path(@bulletin),
+                method: :patch, class: 'btn btn-warning me-2',
+                form: { data: { turbo: false } }
+  - if @bulletin.may_archive?
+    = button_to 'В архив', archive_admin_bulletin_path(@bulletin),
+                method: :patch, class: 'btn btn-outline-secondary me-2',
+                form: { data: { turbo: false } }
+  = link_to 'К списку', admin_bulletins_path, class: 'btn btn-link', data: { turbo: false }

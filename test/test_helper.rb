@@ -44,3 +44,11 @@ module ActionDispatch
     end
   end
 end
+
+def attach_test_image!(record)
+  io = File.open(file_fixture('test.png'))
+  record.image.attach(io: io, filename: 'test.png', content_type: 'image/png')
+  record.save!(validate: false)
+ensure
+  io&.close
+end

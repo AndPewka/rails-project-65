@@ -14,19 +14,35 @@ Rails.application.routes.draw do
   get 'manifest' => 'rails/pwa#manifest', as: :pwa_manifest
 
   scope module: :web do
-    post 'auth/:provider',          to: 'auth#auth_request', as: :auth_request
-    get  'auth/:provider/callback', to: 'auth#callback',     as: :callback_auth
-    # get 'auth/:provider', to: 'auth#request'
-    delete '/logout', to: 'auth#destroy', as: :logout
-
-    resources :bulletins, only: %i[index show new create edit update]
     root 'bulletins#index'
 
+    post 'auth/:provider',          to: 'auth#auth_request', as: :auth_request
+    get  'auth/:provider/callback', to: 'auth#callback',     as: :callback_auth
+    delete '/logout', to: 'auth#destroy', as: :logout
+
+    resources :bulletins do
+      member do
+        patch :to_moderate
+        patch :archive
+      end
+    end
+
+    resource :profile, only: :show, controller: 'profile'
+
     namespace :admin do
-      root 'dashboard#index'
-      resources :categories
-      resources :bulletins
-      resources :users
+      root 'bulletins#moderation'
+
+      resources :bulletins, only: %i[index show] do
+        collection { get :moderation }
+        member do
+          patch :to_moderate
+          patch :publish
+          patch :reject
+          patch :archive
+        end
+      end
+
+      resources :categories, only: %i[index new create show edit update destroy]
     end
   end
 

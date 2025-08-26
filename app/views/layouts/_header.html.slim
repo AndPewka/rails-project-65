@@ -9,20 +9,22 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         - if current_user
           li.nav-item
-            = link_to 'New Bulletin', new_bulletin_path, class: 'nav-link'
+            = link_to 'Добавь объявление', new_bulletin_path, class: 'nav-link'
+          li.nav-item
+            = link_to 'Мои объявления', profile_path, class: 'nav-link', data: { turbo: false }
 
       ul.navbar-nav.ms-auto
         - if current_user
           - if current_user.admin?
             li.nav-item
-              = link_to 'Admin Panel', admin_root_path, class: 'nav-link text-danger fw-bold'
+              = link_to 'Админ панель', admin_root_path, class: 'nav-link text-danger fw-bold', data: { turbo: false }
           li.nav-item
-            = button_to 'Log out', logout_path, method: :delete,
+            = button_to 'Выйти', logout_path, method: :delete,
                         class: 'btn btn-link nav-link',
                         form: { data: { turbo: false } }
         - else
           li.nav-item
-            = button_to 'Sign in', auth_request_path(:github),
+            = button_to 'Войти', auth_request_path(:github),
                         method: :post,
                         class: 'btn btn-primary',
                         data: { turbo: false }

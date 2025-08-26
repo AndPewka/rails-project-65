@@ -16,4 +16,14 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.find_by(id: session[:user_id])
   end
+
+  def require_user!
+    return if current_user
+
+    redirect_to root_path, alert: 'Войдите в систему' and return
+  end
+
+  def require_admin!
+    redirect_to root_path, alert: 'Доступ запрещён' unless current_user&.admin?
+  end
 end

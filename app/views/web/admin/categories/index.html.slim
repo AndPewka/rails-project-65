@@ -1,0 +1,26 @@
+.container
+  .row
+    .col
+      h1 Категории
+      = link_to 'Добавить категорию', new_admin_category_path,
+                class: 'btn btn-primary mb-3', data: { turbo: false }
+
+      table.table
+        thead
+          tr
+            th ID
+            th Название
+            th Действия
+        tbody
+          - @categories.each do |category|
+            tr
+              td = category.id
+              td = link_to category.name, admin_category_path(category), data: { turbo: false }
+              td
+                = link_to 'Редактировать', edit_admin_category_path(category),
+                          class: 'me-3', data: { turbo: false }
+                = button_to 'Удалить', admin_category_path(category),
+                            method: :delete,
+                            class: 'btn btn-link p-0 text-danger align-baseline',
+                            form: { data: { turbo: false } },
+                            data: { confirm: 'Удалить категорию?' }

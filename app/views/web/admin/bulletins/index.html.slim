@@ -1,0 +1,34 @@
+h1 Все объявления
+
+= search_form_for @q, url: admin_bulletins_path, method: :get,
+  html: { class: "row g-2 mb-3", data: { turbo: false } } do |f|
+  .col-md-4
+    = f.search_field :title_cont, class: "form-control", placeholder: "Название"
+  .col-md-3
+    = f.select :state_eq, Bulletin.aasm.states.map(&:name),
+               { include_blank: "Состояние" }, class: "form-select"
+  .col-md-3
+    = f.select :category_id_eq, Category.order(:name).pluck(:name, :id),
+               { include_blank: "Категория" }, class: "form-select"
+  .col-md-2
+    = f.search_field :user_name_cont, class: "form-control", placeholder: "Автор"
+  .col-12.mt-2
+    = f.submit "Искать", class: "btn btn-primary me-2"
+    = link_to "Сброс", admin_bulletins_path, class: "btn btn-outline-secondary", data: { turbo: false }
+
+table.table
+  thead
+    tr
+      th Название
+      th Состояние
+      th Дата
+      th Действия
+  tbody
+    - @bulletins.each do |b|
+      tr
+        td = link_to b.title, admin_bulletin_path(b), data: { turbo: false }
+        td = b.state
+        td = l b.created_at, format: :short
+        td = link_to 'Показать', admin_bulletin_path(b), data: { turbo: false }
+
+= paginate @bulletins

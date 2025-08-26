@@ -1,0 +1,37 @@
+h1 Объявления на модерации
+
+= search_form_for @q, url: moderation_admin_bulletins_path, method: :get,
+  html: { class: "row g-2 mb-3", data: { turbo: false } } do |f|
+  .col-md-6
+    = f.search_field :title_cont, class: "form-control", placeholder: "Название"
+  .col-md-4
+    = f.select :category_id_eq, Category.order(:name).pluck(:name, :id),
+               { include_blank: "Категория" }, class: "form-select"
+  .col-md-2
+    = f.submit "Искать", class: "btn btn-primary w-100"
+
+table.table
+  thead
+    tr
+      th Название
+      th Автор
+      th Дата
+      th Действия
+  tbody
+    - @bulletins.each do |b|
+      tr
+        td = link_to b.title, admin_bulletin_path(b), data: { turbo: false }
+        td = b.user.name
+        td = l b.created_at, format: :short
+        td
+          = button_to 'Опубликовать', publish_admin_bulletin_path(b),
+                      method: :patch, class: 'btn btn-sm btn-success me-2',
+                      form: { data: { turbo: false } }
+          = button_to 'Отклонить', reject_admin_bulletin_path(b),
+                      method: :patch, class: 'btn btn-sm btn-warning me-2',
+                      form: { data: { turbo: false } }
+          = button_to 'В архив', archive_admin_bulletin_path(b),
+                      method: :patch, class: 'btn btn-sm btn-outline-secondary',
+                      form: { data: { turbo: false } }
+
+= paginate @bulletins

@@ -1,0 +1,17 @@
+.container
+    .col
+      h1 = @category.name
+      dl
+        dt ID
+        dd = @category.id
+        dt Название
+        dd = @category.name
+
+      .mt-3
+        = link_to 'Редактировать', edit_admin_category_path(@category),
+                  class: 'btn btn-primary me-2', data: { turbo: false }
+        = button_to 'Удалить', admin_category_path(@category),
+                    method: :delete, class: 'btn btn-danger me-2',
+                    form: { data: { turbo: false } },
+                    data: { confirm: 'Удалить категорию?' }
+        = link_to 'К списку', admin_categories_path, class: 'btn btn-link', data: { turbo: false }

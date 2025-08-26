@@ -1,0 +1,7 @@
+.nav.flex-column.mb-4
+  = link_to 'Объявления на модерации', admin_root_path,
+            class: "nav-link #{'active' if current_page?(admin_root_path)}"
+  = link_to 'Все объявления', admin_bulletins_path,
+            class: "nav-link #{'active' if current_page?(admin_bulletins_path)}"
+  = link_to 'Все категории', admin_categories_path,
+            class: "nav-link #{'active' if current_page?(admin_categories_path)}"

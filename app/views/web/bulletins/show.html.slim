@@ -2,30 +2,27 @@
   .card.shadow-sm.rounded-3.p-4
     h2.mb-3 = @bulletin.title
 
-    .row
-      .col-md-6
-        - if @bulletin.image.attached?
-          = image_tag @bulletin.image.variant(resize_to_limit: [600, 400]), class: "img-fluid rounded mb-3", alt: @bulletin.title
+    p.text-muted
+      | Состояние:
+      = " #{@bulletin.state}"
 
-      .col-md-6
-        p
-          strong Description:
-        p.mb-3 = @bulletin.description
+    - if @bulletin.image.attached?
+      = image_tag @bulletin.image.variant(resize_to_limit: [900, 600]), class: 'img-fluid rounded my-3', alt: @bulletin.title
 
-        p
-          strong Category:
-        p.mb-3 = @bulletin.category.name
-
-        p
-          strong Author:
-        p.mb-3 = @bulletin.user.name
-
-        p.text-muted
-          | Posted
-          = time_ago_in_words(@bulletin.created_at)
-          |  ago
+    p = simple_format(@bulletin.description)
 
     .d-flex.justify-content-between.mt-4
-      = link_to "Back", root_path, class: "btn btn-outline-secondary"
-      - if current_user == @bulletin.user
-        = link_to "Edit", edit_bulletin_path(@bulletin), class: "btn btn-primary"
+      = link_to 'К списку', root_path, class: 'btn btn-link', data: { turbo: false }
+
+      - if current_user&.id == @bulletin.user_id
+        .d-flex.gap-2
+          - if @bulletin.may_to_moderate?
+            = button_to 'Отправить на модерацию', to_moderate_bulletin_path(@bulletin),
+                        method: :patch, class: 'btn btn-primary',
+                        form: { data: { turbo: false } }
+          - if @bulletin.may_archive?
+            = button_to 'В архив', archive_bulletin_path(@bulletin),
+                        method: :patch, class: 'btn btn-outline-secondary',
+                        form: { data: { turbo: false } }
+          = link_to 'Редактировать', edit_bulletin_path(@bulletin),
+                    class: 'btn btn-link', data: { turbo: false }
