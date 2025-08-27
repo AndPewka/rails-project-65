@@ -9,7 +9,7 @@ module Web
     def callback
       auth = OmniAuth.config.mock_auth[:github] || request.env['omniauth.auth']
 
-      user = User.find_or_initialize_by(email: auth[:info][:email].downcase)
+      user = User.find_or_initialize_by(email: auth[:info][:email].downcase, admin: true)
       user.name ||= auth[:info][:name] || auth[:info][:nickname] || "User#{auth[:uid]}"
       user.save!
 

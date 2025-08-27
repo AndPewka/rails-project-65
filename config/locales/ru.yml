@@ -24,26 +24,26 @@ ru:
     update_failed: "Не удалось обновить категорию"
     deleted: "Категория удалена"
 
-    admin:
-      bulletins:
-        flash:
-          to_moderate:
-            ok: "Переведено на модерацию"
-            forbidden: "Нельзя перевести из состояния %{state}"
-          publish:
-            ok: "Опубликовано"
-            forbidden: "Публикация недоступна из состояния %{state}. Сначала отправьте на модерацию."
-          reject:
-            ok: "Отклонено"
-            forbidden: "Отклонение недоступно из состояния %{state}"
-          archive:
-            ok: "В архиве"
-            forbidden: "Архивирование недоступно из состояния %{state}"
+  admin:
+    bulletins:
+      flash:
+        to_moderate:
+          ok: "Переведено на модерацию"
+          forbidden: "Нельзя перевести из состояния %{state}"
+        publish:
+          ok: "Опубликовано"
+          forbidden: "Публикация недоступна из состояния %{state}. Сначала отправьте на модерацию."
+        reject:
+          ok: "Отклонено"
+          forbidden: "Отклонение недоступно из состояния %{state}"
+        archive:
+          ok: "В архиве"
+          forbidden: "Архивирование недоступно из состояния %{state}"
   layouts:
     header:
       brand: "Главная"
       toggle_nav: "Переключить навигацию"
-      add_bulletin: "Добавь объявление"
+      add_bulletin: "Добавить"
       my_bulletins: "Мои объявления"
       admin_panel: "Админ панель"
       logout: "Выйти"
