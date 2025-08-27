@@ -2,7 +2,7 @@
 set -e
 
 echo "===> Running migrations & seeds"
-bundle exec rails db:drop || true
+DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:drop db:setup
 bundle exec rails db:setup
 
 echo "===> Starting Puma"
