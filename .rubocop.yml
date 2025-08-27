@@ -46,3 +46,6 @@ Rails/I18nLocaleTexts:
 
 Metrics/AbcSize:
   Enabled: false
+
+Style/StringLiterals:
+  Enabled: true

@@ -1,14 +1,14 @@
 h1 = t('.title')
 
 = search_form_for @q, url: moderation_admin_bulletins_path, method: :get,
-  html: { class: "row g-2 mb-3", data: { turbo: false } } do |f|
+  html: { class: 'row g-2 mb-3', data: { turbo: false } } do |f|
   .col-md-6
-    = f.search_field :title_cont, class: "form-control", placeholder: t('.search.title_placeholder')
+    = f.search_field :title_cont, class: 'form-control', placeholder: t('.search.title_placeholder')
   .col-md-4
     = f.select :category_id_eq, Category.order(:name).pluck(:name, :id),
-               { include_blank: t('.search.category_placeholder') }, class: "form-select"
+               { include_blank: t('.search.category_placeholder') }, class: 'form-select'
   .col-md-2
-    = f.submit t('.search.submit'), class: "btn btn-primary w-100"
+    = f.submit t('.search.submit'), class: 'btn btn-primary w-100'
 
 table.table
   thead

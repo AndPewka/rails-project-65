@@ -4,18 +4,18 @@
     = link_to t('.add'), new_bulletin_path, class: 'btn btn-primary', data: { turbo: false }
 
   = search_form_for @q, url: profile_path, method: :get,
-    html: { class: "row g-2 mb-3", data: { turbo: false } } do |f|
+    html: { class: 'row g-2 mb-3', data: { turbo: false } } do |f|
     .col-md-5
-      = f.search_field :title_cont, class: "form-control", placeholder: t('.search.title_placeholder')
+      = f.search_field :title_cont, class: 'form-control', placeholder: t('.search.title_placeholder')
     .col-md-3
       = f.select :category_id_eq, Category.order(:name).pluck(:name, :id),
-                 { include_blank: t('.search.category_placeholder') }, class: "form-select"
+                 { include_blank: t('.search.category_placeholder') }, class: 'form-select'
     .col-md-2
       - states = Bulletin.aasm.states.map(&:name)
-      = f.select :state_eq, states, { include_blank: t('.search.state_placeholder') }, class: "form-select"
+      = f.select :state_eq, states, { include_blank: t('.search.state_placeholder') }, class: 'form-select'
     .col-md-2.d-flex.gap-2
-      = f.submit t('.search.submit'), class: "btn btn-primary w-50"
-      = link_to t('.search.reset'), profile_path, class: "btn btn-outline-secondary w-50", data: { turbo: false }
+      = f.submit t('.search.submit'), class: 'btn btn-primary w-50'
+      = link_to t('.search.reset'), profile_path, class: 'btn btn-outline-secondary w-50', data: { turbo: false }
 
   table.table
     thead

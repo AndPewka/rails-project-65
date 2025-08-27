@@ -4,10 +4,10 @@ html
     title Bulletin Board
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag "application", "data-turbo-track": "reload"
-    = javascript_include_tag "application", "data-turbo-track": "reload"
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload'
   body
-    = render "layouts/header"
+    = render 'layouts/header'
 
     - flash.each do |type, message|
       - bs = { notice: 'success', alert: 'danger' }[type.to_sym] || 'info'
