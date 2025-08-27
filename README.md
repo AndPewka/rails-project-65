@@ -13,7 +13,7 @@
 ---
 
 ## 🚀 Демо
-<https://rails-project-65.onrender.com>  
+<https://rails-project-64-pmc8.onrender.com/>  
 
 ---
 
