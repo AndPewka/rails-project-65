@@ -2,8 +2,8 @@
 set -e
 
 echo "===> Running migrations & seeds"
-bundle exec rails db:prepare
-bundle exec rails db:seed
+bundle exec rails db:drop || true
+bundle exec rails db:setup
 
 echo "===> Starting Puma"
 exec bundle exec puma -C config/puma.rb
