@@ -39,6 +39,8 @@ module Web
       def destroy
         @category.destroy
         redirect_to admin_categories_path, notice: t('categories.deleted')
+      rescue ActiveRecord::InvalidForeignKey
+        redirect_to admin_categories_path, alert: t('categories.validation_alert')
       end
 
       private
