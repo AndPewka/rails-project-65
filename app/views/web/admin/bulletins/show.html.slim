@@ -20,5 +20,7 @@ p = simple_format(@bulletin.description)
   - if @bulletin.may_archive?
     = button_to t('.actions.archive'), archive_admin_bulletin_path(@bulletin),
                 method: :patch, class: 'btn btn-outline-secondary me-2',
-                form: { data: { turbo: false } }
+                form: { data: { turbo: false, controller: 'confirm',
+                        action: 'submit->confirm#confirm',
+                        confirm_message_value: t('web.bulletins.confirm_archive') } }
   = link_to t('.back'), admin_bulletins_path, class: 'btn btn-link', data: { turbo: false }

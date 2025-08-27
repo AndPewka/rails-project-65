@@ -22,7 +22,10 @@
                         form: { data: { turbo: false } }
           - if @bulletin.may_archive?
             = button_to t('.actions.archive'), archive_bulletin_path(@bulletin),
-                        method: :patch, class: 'btn btn-outline-secondary',
-                        form: { data: { turbo: false } }
+                    method: :patch,
+                    class: 'btn btn-outline-secondary',
+                    form: { data: { turbo: false, controller: 'confirm',
+                            action: 'submit->confirm#confirm',
+                            confirm_message_value: t('web.bulletins.confirm_archive') } }
           = link_to t('.actions.edit'), edit_bulletin_path(@bulletin),
                     class: 'btn btn-link', data: { turbo: false }

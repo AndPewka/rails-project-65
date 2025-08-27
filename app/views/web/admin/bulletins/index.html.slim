@@ -29,6 +29,13 @@ table.table
         td = link_to b.title, admin_bulletin_path(b), data: { turbo: false }
         td = b.state
         td = l b.created_at, format: :short
-        td = link_to t('.show'), admin_bulletin_path(b), data: { turbo: false }
+        td
+          = link_to t('.show'), admin_bulletin_path(b), data: { turbo: false }
+          = button_to t('.actions.archive'), archive_bulletin_path(b),
+                  method: :patch,
+                  class: 'btn btn-sm btn-outline-secondary me-2',
+                  form: { data: { turbo: false, controller: 'confirm',
+                          action: 'submit->confirm#confirm',
+                          confirm_message_value: t('web.bulletins.confirm_archive') } }
 
 = paginate @bulletins

@@ -32,6 +32,7 @@ table.table
                       form: { data: { turbo: false } }
           = button_to t('.actions.archive'), archive_admin_bulletin_path(b),
                       method: :patch, class: 'btn btn-sm btn-outline-secondary',
-                      form: { data: { turbo: false } }
-
+                      form: { data: { turbo: false, controller: 'confirm',
+                              action: 'submit->confirm#confirm',
+                              confirm_message_value: t('web.bulletins.confirm_archive') } }
 = paginate @bulletins

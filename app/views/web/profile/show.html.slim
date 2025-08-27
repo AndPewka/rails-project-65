@@ -37,8 +37,11 @@
                           form: { data: { turbo: false } }
             - if b.may_archive?
               = button_to t('.actions.archive'), archive_bulletin_path(b),
-                          method: :patch, class: 'btn btn-sm btn-outline-secondary me-2',
-                          form: { data: { turbo: false } }
+                          method: :patch,
+                          class: 'btn btn-sm btn-outline-secondary me-2',
+                          form: { data: { turbo: false, controller: 'confirm',
+                                         action: 'submit->confirm#confirm',
+                                         confirm_message_value: t('web.bulletins.confirm_archive') } }
             = link_to t('.actions.edit'), edit_bulletin_path(b),
                       class: 'btn btn-sm btn-link', data: { turbo: false }
 

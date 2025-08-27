@@ -71,6 +71,7 @@ ru:
           edit: "Редактировать"
 
     bulletins:
+      confirm_archive: "Архивировать объявление?"
       index:
         title: "Объявления"
         search:
@@ -113,6 +114,7 @@ ru:
           to_moderation: "Отправить на модерацию"
           archive: "В архив"
           edit: "Редактировать"
+
 
     admin:
       shared:
