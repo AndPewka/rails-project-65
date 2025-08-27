@@ -15,14 +15,14 @@ module Web
       get bulletins_url
       assert_response :success
       assert_match @published.title, response.body
-      refute_match @own_draft.title, response.body
+      assert_no_match @own_draft.title, response.body
     end
 
     test 'GET /bulletins/:id does not render admin sidebar' do
       get bulletin_url(@published)
       assert_response :success
-      refute_match 'Объявления на модерации', response.body
-      refute_match 'Все категории', response.body
+      assert_no_match 'Объявления на модерации', response.body
+      assert_no_match 'Все категории', response.body
     end
 
     test 'POST /bulletins requires login' do

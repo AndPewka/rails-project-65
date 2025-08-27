@@ -14,12 +14,12 @@ module Web
       user.save!
 
       session[:user_id] = user.id
-      redirect_to '/', notice: 'Signed in'
+      redirect_to '/', notice: t('auth.signed_in')
     end
 
     def destroy
       session[:user_id] = nil
-      redirect_to root_path, notice: 'Signed out successfully'
+      redirect_to root_path, notice: t('auth.signed_out')
     end
   end
 end

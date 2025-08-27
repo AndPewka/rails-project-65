@@ -17,41 +17,40 @@ module Web
       @bulletin = current_user.bulletins.build
     end
 
+    def edit; end
+
     def create
       @bulletin = current_user.bulletins.build(bulletin_params)
       if @bulletin.save
-        redirect_to profile_path, notice: 'Объявление создано'
+        redirect_to profile_path, notice: t('bulletins.created')
       else
-        flash.now[:alert] = 'Не удалось создать объявление'
+        flash.now[:alert] = t('bulletins.create_failed')
         render :new, status: :unprocessable_entity
       end
     end
 
-    def edit; end
-
     def update
       if @bulletin.update(bulletin_params)
-        redirect_to @bulletin, notice: 'Объявление обновлено'
+        redirect_to @bulletin, notice: t('bulletins.updated')
       else
-        flash.now[:alert] = 'Не удалось обновить объявление'
+        flash.now[:alert] = t('bulletins.update_failed')
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       @bulletin.destroy
-      redirect_to profile_path, notice: 'Объявление удалено'
+      redirect_to profile_path, notice: t('bulletins.deleted')
     end
 
-    # FSM (автор)
     def to_moderate
       @bulletin.to_moderate! if @bulletin.may_to_moderate?
-      redirect_back fallback_location: profile_path, notice: 'Отправлено на модерацию'
+      redirect_back fallback_location: profile_path, notice: t('bulletins.sent_to_moderation')
     end
 
     def archive
       @bulletin.archive! if @bulletin.may_archive?
-      redirect_back fallback_location: profile_path, notice: 'Отправлено в архив'
+      redirect_back fallback_location: profile_path, notice: t('bulletins.archived')
     end
 
     private
@@ -62,7 +61,7 @@ module Web
 
     def require_owner!
       require_user!
-      redirect_to root_path, alert: 'Доступ запрещён' unless @bulletin.user_id == current_user.id
+      redirect_to root_path, alert: t('alerts.forbidden') unless @bulletin.user_id == current_user.id
     end
 
     def bulletin_params

@@ -21,40 +21,40 @@ module Web
       def to_moderate
         if @bulletin.may_to_moderate?
           @bulletin.to_moderate!
-          redirect_back fallback_location: admin_bulletins_path, notice: 'Переведено на модерацию'
+          redirect_back fallback_location: admin_bulletins_path, notice: t('admin.bulletins.flash.to_moderate.ok')
         else
           redirect_back fallback_location: admin_bulletins_path,
-                        alert: "Нельзя перевести из состояния #{@bulletin.state}"
+                        alert: t('admin.bulletins.flash.to_moderate.forbidden', state: @bulletin.state)
         end
       end
 
       def publish
         if @bulletin.may_publish?
           @bulletin.publish!
-          redirect_back fallback_location: admin_bulletins_path, notice: 'Опубликовано'
+          redirect_back fallback_location: admin_bulletins_path, notice: t('admin.bulletins.flash.publish.ok')
         else
           redirect_back fallback_location: admin_bulletins_path,
-                        alert: "Публикация недоступна из состояния #{@bulletin.state}. Сначала отправьте на модерацию."
+                        alert: t('admin.bulletins.flash.publish.forbidden', state: @bulletin.state)
         end
       end
 
       def reject
         if @bulletin.may_reject?
           @bulletin.reject!
-          redirect_back fallback_location: admin_bulletins_path, notice: 'Отклонено'
+          redirect_back fallback_location: admin_bulletins_path, notice: t('admin.bulletins.flash.reject.ok')
         else
           redirect_back fallback_location: admin_bulletins_path,
-                        alert: "Отклонение недоступно из состояния #{@bulletin.state}"
+                        alert: t('admin.bulletins.flash.reject.forbidden', state: @bulletin.state)
         end
       end
 
       def archive
         if @bulletin.may_archive?
           @bulletin.archive!
-          redirect_back fallback_location: admin_bulletins_path, notice: 'В архиве'
+          redirect_back fallback_location: admin_bulletins_path, notice: t('admin.bulletins.flash.archive.ok')
         else
           redirect_back fallback_location: admin_bulletins_path,
-                        alert: "Архивирование недоступно из состояния #{@bulletin.state}"
+                        alert: t('admin.bulletins.flash.archive.forbidden', state: @bulletin.state)
         end
       end
 
@@ -65,7 +65,7 @@ module Web
       end
 
       def require_admin!
-        redirect_to root_path, alert: 'Доступ запрещён' unless current_user&.admin?
+        redirect_to root_path, alert: t('alerts.forbidden') unless current_user&.admin?
       end
     end
   end

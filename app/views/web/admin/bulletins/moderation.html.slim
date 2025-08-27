@@ -1,22 +1,22 @@
-h1 Объявления на модерации
+h1 = t('.title')
 
 = search_form_for @q, url: moderation_admin_bulletins_path, method: :get,
   html: { class: "row g-2 mb-3", data: { turbo: false } } do |f|
   .col-md-6
-    = f.search_field :title_cont, class: "form-control", placeholder: "Название"
+    = f.search_field :title_cont, class: "form-control", placeholder: t('.search.title_placeholder')
   .col-md-4
     = f.select :category_id_eq, Category.order(:name).pluck(:name, :id),
-               { include_blank: "Категория" }, class: "form-select"
+               { include_blank: t('.search.category_placeholder') }, class: "form-select"
   .col-md-2
-    = f.submit "Искать", class: "btn btn-primary w-100"
+    = f.submit t('.search.submit'), class: "btn btn-primary w-100"
 
 table.table
   thead
     tr
-      th Название
-      th Автор
-      th Дата
-      th Действия
+      th = t('.table.title')
+      th = t('.table.author')
+      th = t('.table.date')
+      th = t('.table.actions')
   tbody
     - @bulletins.each do |b|
       tr
@@ -24,13 +24,13 @@ table.table
         td = b.user.name
         td = l b.created_at, format: :short
         td
-          = button_to 'Опубликовать', publish_admin_bulletin_path(b),
+          = button_to t('.actions.publish'), publish_admin_bulletin_path(b),
                       method: :patch, class: 'btn btn-sm btn-success me-2',
                       form: { data: { turbo: false } }
-          = button_to 'Отклонить', reject_admin_bulletin_path(b),
+          = button_to t('.actions.reject'), reject_admin_bulletin_path(b),
                       method: :patch, class: 'btn btn-sm btn-warning me-2',
                       form: { data: { turbo: false } }
-          = button_to 'В архив', archive_admin_bulletin_path(b),
+          = button_to t('.actions.archive'), archive_admin_bulletin_path(b),
                       method: :patch, class: 'btn btn-sm btn-outline-secondary',
                       form: { data: { turbo: false } }
 

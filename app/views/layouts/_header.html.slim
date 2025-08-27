@@ -1,30 +1,27 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-4
   .container
-    = link_to 'Dashboard', root_path, class: 'navbar-brand'
-
-    button.navbar-toggler type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"
-      span.navbar-toggler-icon
+    = link_to t('.brand'), root_path, class: 'navbar-brand'
 
     #navbarNav.collapse.navbar-collapse
       ul.navbar-nav.me-auto.mb-2.mb-lg-0
         - if current_user
           li.nav-item
-            = link_to 'Добавь объявление', new_bulletin_path, class: 'nav-link'
+            = link_to t('.add_bulletin'), new_bulletin_path, class: 'nav-link'
           li.nav-item
-            = link_to 'Мои объявления', profile_path, class: 'nav-link', data: { turbo: false }
+            = link_to t('.my_bulletins'), profile_path, class: 'nav-link', data: { turbo: false }
 
       ul.navbar-nav.ms-auto
         - if current_user
           - if current_user.admin?
             li.nav-item
-              = link_to 'Админ панель', admin_root_path, class: 'nav-link text-danger fw-bold', data: { turbo: false }
+              = link_to t('.admin_panel'), admin_root_path, class: 'nav-link text-danger fw-bold', data: { turbo: false }
           li.nav-item
-            = button_to 'Выйти', logout_path, method: :delete,
+            = button_to t('.logout'), logout_path, method: :delete,
                         class: 'btn btn-link nav-link',
                         form: { data: { turbo: false } }
         - else
           li.nav-item
-            = button_to 'Войти', auth_request_path(:github),
+            = button_to t('.login'), auth_request_path(:github),
                         method: :post,
                         class: 'btn btn-primary',
                         data: { turbo: false }

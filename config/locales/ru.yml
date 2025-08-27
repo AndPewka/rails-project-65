@@ -1,0 +1,254 @@
+ru:
+  alerts:
+    not_authorized: "У вас нет прав для этого действия."
+    sign_in_required: "Войдите в систему"
+    forbidden: "Доступ запрещён"
+
+  auth:
+    signed_in: "Вход выполнен"
+    signed_out: "Вы вышли из системы"
+
+  bulletins:
+    created: "Объявление создано"
+    create_failed: "Не удалось создать объявление"
+    updated: "Объявление обновлено"
+    update_failed: "Не удалось обновить объявление"
+    deleted: "Объявление удалено"
+    sent_to_moderation: "Отправлено на модерацию"
+    archived: "Отправлено в архив"
+
+  categories:
+    created: "Категория создана"
+    create_failed: "Не удалось создать категорию"
+    updated: "Категория обновлена"
+    update_failed: "Не удалось обновить категорию"
+    deleted: "Категория удалена"
+
+    admin:
+      bulletins:
+        flash:
+          to_moderate:
+            ok: "Переведено на модерацию"
+            forbidden: "Нельзя перевести из состояния %{state}"
+          publish:
+            ok: "Опубликовано"
+            forbidden: "Публикация недоступна из состояния %{state}. Сначала отправьте на модерацию."
+          reject:
+            ok: "Отклонено"
+            forbidden: "Отклонение недоступно из состояния %{state}"
+          archive:
+            ok: "В архиве"
+            forbidden: "Архивирование недоступно из состояния %{state}"
+  layouts:
+    header:
+      brand: "Главная"
+      toggle_nav: "Переключить навигацию"
+      add_bulletin: "Добавь объявление"
+      my_bulletins: "Мои объявления"
+      admin_panel: "Админ панель"
+      logout: "Выйти"
+      login: "Войти"
+
+  web:
+    profile:
+      show:
+        title: "Мои объявления"
+        add: "Добавить"
+        search:
+          title_placeholder: "Название"
+          category_placeholder: "Категория"
+          state_placeholder: "Состояние"
+          submit: "Искать"
+          reset: "Сброс"
+        table:
+          title: "Название"
+          state: "Состояние"
+          date: "Дата"
+          actions: "Действия"
+        actions:
+          to_moderation: "Отправить на модерацию"
+          archive: "В архив"
+          edit: "Редактировать"
+
+    bulletins:
+      index:
+        title: "Объявления"
+        search:
+          title_placeholder: "Поиск по названию"
+          category_placeholder: "Категория"
+          submit: "Искать"
+          reset: "Сброс"
+        time_ago: "%{time} назад"
+      new:
+        title: "Новое объявление"
+        form:
+          title: "Название"
+          title_hint: "Не более 50 символов"
+          description: "Описание"
+          description_hint: "Не более 1000 символов"
+          category: "Категория"
+          category_prompt: "Выберите категорию"
+          image: "Изображение"
+          image_hint: "До 5 МБ (jpg, png, gif)"
+          submit: "Создать"
+          cancel: "Отмена"
+      edit:
+        title: "Редактировать объявление"
+        form:
+          title: "Название"
+          title_hint: "Не более 50 символов"
+          description: "Описание"
+          description_hint: "Не более 1000 символов"
+          category: "Категория"
+          category_prompt: "Выберите категорию"
+          image: "Изображение"
+          current_image: "Текущее изображение:"
+          image_hint: "До 5 МБ (jpg, png, gif)"
+          submit: "Обновить"
+          cancel: "Отмена"
+      show:
+        state: "Состояние:"
+        back: "К списку"
+        actions:
+          to_moderation: "Отправить на модерацию"
+          archive: "В архив"
+          edit: "Редактировать"
+
+    admin:
+      shared:
+        nav:
+          moderation: "Объявления на модерации"
+          all_bulletins: "Все объявления"
+          categories: "Все категории"
+
+      categories:
+        index:
+          title: "Категории"
+          add: "Добавить категорию"
+          table:
+            id: "ID"
+            name: "Название"
+            actions: "Действия"
+          edit: "Редактировать"
+          delete: "Удалить"
+          delete_confirm: "Удалить категорию?"
+        show:
+          back: "К списку"
+          edit: "Редактировать"
+          delete: "Удалить"
+          delete_confirm: "Удалить категорию?"
+          name_label: "Название"
+        new:
+          title: "Добавить категорию"
+        edit:
+          title: "Редактировать категорию"
+        form:
+          name: "Название"
+          save: "Сохранить"
+          cancel: "Отмена"
+
+      bulletins:
+        moderation:
+          title: "Объявления на модерации"
+          search:
+            title_placeholder: "Название"
+            category_placeholder: "Категория"
+            submit: "Искать"
+          table:
+            title: "Название"
+            author: "Автор"
+            date: "Дата"
+            actions: "Действия"
+          actions:
+            publish: "Опубликовать"
+            reject: "Отклонить"
+            archive: "В архив"
+        show:
+          state: "Состояние:"
+          actions:
+            to_moderation: "Взять на модерацию"
+            publish: "Опубликовать"
+            reject: "Отклонить"
+            archive: "В архив"
+          back: "К списку"
+        index:
+          title: "Все объявления"
+          search:
+            title_placeholder: "Название"
+            state_placeholder: "Состояние"
+            category_placeholder: "Категория"
+            author_placeholder: "Автор"
+            submit: "Искать"
+            reset: "Сброс"
+          table:
+            title: "Название"
+            state: "Состояние"
+            date: "Дата"
+            actions: "Действия"
+          show: "Показать"
+  time:
+    formats:
+      short: "%d.%m.%Y %H:%M"
+
+    date:
+      formats:
+        short: "%d.%m.%Y"
+
+  datetime:
+    distance_in_words:
+      half_a_minute: "полминуты"
+      less_than_x_seconds:
+        one: "меньше 1 секунды"
+        few: "меньше %{count} секунд"
+        many: "меньше %{count} секунд"
+        other: "меньше %{count} секунды"
+      x_seconds:
+        one: "1 секунда"
+        few: "%{count} секунды"
+        many: "%{count} секунд"
+        other: "%{count} секунды"
+      less_than_x_minutes:
+        one: "меньше 1 минуты"
+        few: "меньше %{count} минут"
+        many: "меньше %{count} минут"
+        other: "меньше %{count} минуты"
+      x_minutes:
+        one: "1 минута"
+        few: "%{count} минуты"
+        many: "%{count} минут"
+        other: "%{count} минуты"
+      about_x_hours:
+        one: "около часа"
+        few: "около %{count} часов"
+        many: "около %{count} часов"
+        other: "около %{count} часа"
+      x_days:
+        one: "1 день"
+        few: "%{count} дня"
+        many: "%{count} дней"
+        other: "%{count} дня"
+      about_x_months:
+        one: "около месяца"
+        few: "около %{count} месяцев"
+        many: "около %{count} месяцев"
+        other: "около %{count} месяца"
+      x_months:
+        one: "1 месяц"
+        few: "%{count} месяца"
+        many: "%{count} месяцев"
+        other: "%{count} месяца"
+      about_x_years:
+        one: "около года"
+        few: "около %{count} лет"
+        many: "около %{count} лет"
+        other: "около %{count} года"
+      over_x_years:
+        one: "больше года"
+        few: "больше %{count} лет"
+        many: "больше %{count} лет"
+        other: "больше %{count} года"
+      almost_x_years:
+        one: "почти год"
+        few: "почти %{count} года"
+        many: "почти %{count} лет"
+        other: "почти %{count} года"

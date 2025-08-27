@@ -5,7 +5,7 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   test 'validations' do
     u = User.new
-    refute u.valid?
+    assert_not u.valid?
     u.email = 'x@example.com'
     u.name  = 'X'
     assert u.valid?

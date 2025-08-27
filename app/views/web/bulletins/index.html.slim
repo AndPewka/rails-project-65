@@ -1,17 +1,17 @@
 .container
   .card.shadow-sm.rounded-3.p-4
-    h2.mb-4 Объявления
+    h2.mb-4 = t('.title')
 
     = search_form_for @q, url: bulletins_path, method: :get,
       html: { class: "row g-2 mb-4", data: { turbo: false } } do |f|
       .col-md-6
-        = f.search_field :title_cont, class: "form-control", placeholder: "Поиск по названию"
+        = f.search_field :title_cont, class: "form-control", placeholder: t('.search.title_placeholder')
       .col-md-4
         = f.select :category_id_eq, Category.order(:name).pluck(:name, :id),
-                   { include_blank: "Категория" }, class: "form-select"
+                   { include_blank: t('.search.category_placeholder') }, class: "form-select"
       .col-md-2.d-flex.gap-2
-        = f.submit "Искать", class: "btn btn-primary w-50"
-        = link_to "Сброс", bulletins_path, class: "btn btn-outline-secondary w-50", data: { turbo: false }
+        = f.submit t('.search.submit'), class: "btn btn-primary w-50"
+        = link_to t('.search.reset'), bulletins_path, class: "btn btn-outline-secondary w-50", data: { turbo: false }
 
     .row.row-cols-1.row-cols-md-3.g-4
       - @bulletins.each do |bulletin|
@@ -21,7 +21,7 @@
               = image_tag bulletin.image.variant(resize_to_fill: [400, 250]), class: "card-img-top", alt: bulletin.title
             .card-body
               h5.card-title = link_to bulletin.title, bulletin_path(bulletin), class: "text-decoration-none"
-              p.text-muted.mb-0 = time_ago_in_words(bulletin.created_at) + " ago"
+              p.text-muted.mb-0 = t('.time_ago', time: time_ago_in_words(bulletin.created_at))
 
     .mt-3
       = paginate @bulletins

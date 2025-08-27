@@ -21,13 +21,13 @@ class BulletinTest < ActiveSupport::TestCase
 
   test 'title and description presence/length' do
     b = Bulletin.new
-    refute b.valid?
+    assert_not b.valid?
     b.title = 'x' * 51
     b.description = 'y' * 1001
     b.user = @user
     b.category = @category
     b.image = nil
-    refute b.valid?
+    assert_not b.valid?
   end
 
   test 'fsm transitions' do

@@ -4,14 +4,14 @@
       dl
         dt ID
         dd = @category.id
-        dt Название
+        dt = t('.name_label')
         dd = @category.name
 
       .mt-3
-        = link_to 'Редактировать', edit_admin_category_path(@category),
+        = link_to t('.edit'), edit_admin_category_path(@category),
                   class: 'btn btn-primary me-2', data: { turbo: false }
-        = button_to 'Удалить', admin_category_path(@category),
+        = button_to t('.delete'), admin_category_path(@category),
                     method: :delete, class: 'btn btn-danger me-2',
                     form: { data: { turbo: false } },
-                    data: { confirm: 'Удалить категорию?' }
-        = link_to 'К списку', admin_categories_path, class: 'btn btn-link', data: { turbo: false }
+                    data: { confirm: t('.delete_confirm') }
+        = link_to t('.back'), admin_categories_path, class: 'btn btn-link', data: { turbo: false }

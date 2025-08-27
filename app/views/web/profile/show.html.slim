@@ -1,29 +1,29 @@
 .container
   .d-flex.justify-content-between.align-items-center.mb-3
-    h1 Мои объявления
-    = link_to 'Добавить', new_bulletin_path, class: 'btn btn-primary', data: { turbo: false }
+    h1 = t('.title')
+    = link_to t('.add'), new_bulletin_path, class: 'btn btn-primary', data: { turbo: false }
 
   = search_form_for @q, url: profile_path, method: :get,
     html: { class: "row g-2 mb-3", data: { turbo: false } } do |f|
     .col-md-5
-      = f.search_field :title_cont, class: "form-control", placeholder: "Название"
+      = f.search_field :title_cont, class: "form-control", placeholder: t('.search.title_placeholder')
     .col-md-3
       = f.select :category_id_eq, Category.order(:name).pluck(:name, :id),
-                 { include_blank: "Категория" }, class: "form-select"
+                 { include_blank: t('.search.category_placeholder') }, class: "form-select"
     .col-md-2
       - states = Bulletin.aasm.states.map(&:name)
-      = f.select :state_eq, states, { include_blank: "Состояние" }, class: "form-select"
+      = f.select :state_eq, states, { include_blank: t('.search.state_placeholder') }, class: "form-select"
     .col-md-2.d-flex.gap-2
-      = f.submit "Искать", class: "btn btn-primary w-50"
-      = link_to "Сброс", profile_path, class: "btn btn-outline-secondary w-50", data: { turbo: false }
+      = f.submit t('.search.submit'), class: "btn btn-primary w-50"
+      = link_to t('.search.reset'), profile_path, class: "btn btn-outline-secondary w-50", data: { turbo: false }
 
   table.table
     thead
       tr
-        th Название
-        th Состояние
-        th Дата
-        th Действия
+        th = t('.table.title')
+        th = t('.table.state')
+        th = t('.table.date')
+        th = t('.table.actions')
     tbody
       - @bulletins.each do |b|
         tr
@@ -32,14 +32,14 @@
           td = l b.created_at, format: :short
           td
             - if b.may_to_moderate?
-              = button_to 'Отправить на модерацию', to_moderate_bulletin_path(b),
+              = button_to t('.actions.to_moderation'), to_moderate_bulletin_path(b),
                           method: :patch, class: 'btn btn-sm btn-outline-primary me-2',
                           form: { data: { turbo: false } }
             - if b.may_archive?
-              = button_to 'В архив', archive_bulletin_path(b),
+              = button_to t('.actions.archive'), archive_bulletin_path(b),
                           method: :patch, class: 'btn btn-sm btn-outline-secondary me-2',
                           form: { data: { turbo: false } }
-            = link_to 'Редактировать', edit_bulletin_path(b),
+            = link_to t('.actions.edit'), edit_bulletin_path(b),
                       class: 'btn btn-sm btn-link', data: { turbo: false }
 
   = paginate @bulletins

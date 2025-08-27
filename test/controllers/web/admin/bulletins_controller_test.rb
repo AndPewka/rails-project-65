@@ -34,7 +34,6 @@ module Web
       test 'reject' do
         sign_in(@admin)
         attach_test_image!(@mod)
-        @mod.update_column(:state, 'under_moderation')
         patch reject_admin_bulletin_url(@mod)
         assert_redirected_to admin_bulletins_url
         assert_equal 'rejected', @mod.reload.state

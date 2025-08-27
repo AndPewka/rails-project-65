@@ -3,7 +3,7 @@
     h2.mb-3 = @bulletin.title
 
     p.text-muted
-      | Состояние:
+      = t('.state')
       = " #{@bulletin.state}"
 
     - if @bulletin.image.attached?
@@ -12,17 +12,17 @@
     p = simple_format(@bulletin.description)
 
     .d-flex.justify-content-between.mt-4
-      = link_to 'К списку', root_path, class: 'btn btn-link', data: { turbo: false }
+      = link_to t('.back'), root_path, class: 'btn btn-link', data: { turbo: false }
 
       - if current_user&.id == @bulletin.user_id
         .d-flex.gap-2
           - if @bulletin.may_to_moderate?
-            = button_to 'Отправить на модерацию', to_moderate_bulletin_path(@bulletin),
+            = button_to t('.actions.to_moderation'), to_moderate_bulletin_path(@bulletin),
                         method: :patch, class: 'btn btn-primary',
                         form: { data: { turbo: false } }
           - if @bulletin.may_archive?
-            = button_to 'В архив', archive_bulletin_path(@bulletin),
+            = button_to t('.actions.archive'), archive_bulletin_path(@bulletin),
                         method: :patch, class: 'btn btn-outline-secondary',
                         form: { data: { turbo: false } }
-          = link_to 'Редактировать', edit_bulletin_path(@bulletin),
+          = link_to t('.actions.edit'), edit_bulletin_path(@bulletin),
                     class: 'btn btn-link', data: { turbo: false }

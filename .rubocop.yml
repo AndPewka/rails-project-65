@@ -1,5 +1,11 @@
+require:
+  - rubocop-rails
+
 AllCops:
   NewCops: enable
+
+Rails:
+  Enabled: true
 
 Style/Documentation:
   Enabled: false
@@ -29,6 +35,12 @@ Style/EmptyMethod:
   Enabled: true
 
 Layout/EmptyLinesAroundMethodBody:
+  Enabled: true
+
+Rails/ActionOrder:
+  Enabled: true
+
+Rails/I18nLocaleTexts:
   Enabled: true
 
 Metrics/AbcSize:
