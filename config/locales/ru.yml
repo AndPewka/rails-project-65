@@ -1,4 +1,14 @@
 ru:
+  activerecord:
+    attributes:
+      category:
+        name: "Категория"
+    errors:
+      models:
+        category:
+          attributes:
+            name:
+              taken: "с таким названием уже существует"
   alerts:
     not_authorized: "У вас нет прав для этого действия."
     sign_in_required: "Войдите в систему"

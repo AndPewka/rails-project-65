@@ -22,7 +22,8 @@ module Web
         if @category.save
           redirect_to admin_category_path(@category), notice: t('categories.created')
         else
-          flash.now[:alert] = t('categories.create_failed')
+          text_error = @category.errors.full_messages.first.presence
+          flash.now[:alert] = text_error || t('categories.create_failed')
           render :new, status: :unprocessable_entity
         end
       end
