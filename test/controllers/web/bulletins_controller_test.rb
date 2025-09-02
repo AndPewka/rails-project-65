@@ -38,17 +38,17 @@ module Web
 
       post bulletins_url, params: {
         bulletin: {
-          title:       unique_title,
+          title: unique_title,
           description: 'Descr',
           category_id: categories(:one).id,
-          image:       file
+          image: file
         }
       }
 
       assert_redirected_to profile_url
 
-       b = Bulletin.find_by(
-        title:       unique_title,
+      b = Bulletin.find_by(
+        title: unique_title,
         description: 'Descr',
         category_id: categories(:one).id
       )

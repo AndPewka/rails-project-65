@@ -79,11 +79,11 @@ module Web
 
       test 'DELETE /admin/categories/:id destroys category' do
         sign_in @admin
-        cat = Category.create!(name: "Tmp_test")
+        cat = Category.create!(name: 'Tmp_test')
         assert_difference('Category.count', -1) do
           delete admin_category_url(cat)
         end
-        assert_not Category.exists?(name: "Tmp_test")
+        assert_not Category.exists?(name: 'Tmp_test')
         assert_redirected_to admin_categories_url
       end
     end
