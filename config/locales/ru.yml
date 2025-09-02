@@ -199,6 +199,8 @@ ru:
             date: "Дата"
             actions: "Действия"
           show: "Показать"
+          actions:
+            archive: "В архив"
   time:
     formats:
       short: "%d.%m.%Y %H:%M"

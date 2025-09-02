@@ -33,18 +33,31 @@ module Web
     test 'POST /bulletins with image creates for signed user' do
       sign_in(@user)
 
+      unique_title = "Created #{SecureRandom.hex(4)}"
       file = Rack::Test::UploadedFile.new(file_fixture('test.png'), 'image/png')
-      assert_difference('Bulletin.count') do
-        post bulletins_url, params: {
-          bulletin: {
-            title: 'Created',
-            description: 'Descr',
-            category_id: categories(:one).id,
-            image: file
-          }
+
+      post bulletins_url, params: {
+        bulletin: {
+          title:       unique_title,
+          description: 'Descr',
+          category_id: categories(:one).id,
+          image:       file
         }
-      end
+      }
+
       assert_redirected_to profile_url
+
+       b = Bulletin.find_by(
+        title:       unique_title,
+        description: 'Descr',
+        category_id: categories(:one).id
+      )
+
+      assert_not_nil b
+      assert_equal unique_title, b.title
+      assert_equal 'Descr',      b.description
+      assert_equal categories(:one).id, b.category_id
+      assert b.image.attached?
     end
 
     test 'PATCH to_moderate by owner' do
